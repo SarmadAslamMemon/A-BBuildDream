@@ -6,7 +6,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.abbuilddream.api.MainDashBoard;
 import com.example.abbuilddream.R;
 
 public class WelcomeScreen extends AppCompatActivity {

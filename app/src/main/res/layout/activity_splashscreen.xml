@@ -16,8 +16,8 @@
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ablogo"
+        android:layout_height="240dp"
+        android:src="@drawable/applogo"
         android:layout_marginTop="-40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="A Project of aandbco"
+        android:text="a project of a&amp;b group of companies"
+
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textAllCaps="true"

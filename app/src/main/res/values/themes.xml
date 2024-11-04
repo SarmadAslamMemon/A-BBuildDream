@@ -3,6 +3,11 @@
     <style name="Base.Theme.ABBuildDream" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:fontFamily">@font/mediumperimary</item>
+        <item name="android:statusBarColor">@color/colorPrimaryGray</item>
+        <item name="android:windowBackground">@color/cardview_light_background</item>
+        <item name="android:forceDarkAllowed">false</item>
+
     </style>
 
     <style name="Theme.ABBuildDream" parent="Base.Theme.ABBuildDream" />

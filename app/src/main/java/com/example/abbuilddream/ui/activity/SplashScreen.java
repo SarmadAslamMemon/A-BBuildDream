@@ -1,4 +1,4 @@
-package com.example.abbuilddream.api;
+package com.example.abbuilddream.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.abbuilddream.R;
-import com.example.abbuilddream.ui.activity.WelcomeScreen;
 
 public class SplashScreen extends AppCompatActivity {
 
