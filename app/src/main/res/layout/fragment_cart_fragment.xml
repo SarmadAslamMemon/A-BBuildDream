@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/text_no_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="No item in Cart"
+        android:textSize="24sp"
+        android:visibility="gone"
+        android:textColor="#001D6E"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderedProductRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="16dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/mint_fresh_gradient"
+        android:padding="16dp"
+        app:cardCornerRadius="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:background="@drawable/mint_fresh_gradient"
+        android:padding="16dp"
+         android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_total_items"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: (2 items)"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/text_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$13.92"
+            android:textSize="24sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_proceed_to_checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Proceed To Checkout"
+        android:backgroundTint="#FFFFFF"
+        android:textColor="#001D6E"
+    android:paddingVertical="8dp"
+    android:paddingHorizontal="16dp"
+    android:textStyle="bold"/>
+</LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>

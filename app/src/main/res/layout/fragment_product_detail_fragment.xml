@@ -1,0 +1,234 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <!-- Card View to provide rounded corners and elevation -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/productImageCardView"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp">
+
+            <!-- FrameLayout to allow overlay of icons on the product image -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Product Image -->
+                <ImageView
+                    android:id="@+id/productImagePD"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/constrction" /> <!-- Replace with actual image -->
+
+                <!-- Back Button at the top left -->
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="32dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="top|start"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/backpress_arrow"
+                    android:contentDescription="Back"
+                    app:tint="#FFFFFF" />
+
+                <!-- Favorite Icon at the top right -->
+                <ImageButton
+                    android:id="@+id/favoriteBtnPD"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/heart_svg"
+                    android:contentDescription="Favorite"
+                    app:tint="#FFFFFF" />
+
+            </FrameLayout>
+
+            <!-- Lottie Animation for Adding to Favorite -->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/addFavAnimationPD"
+                android:visibility="gone"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                app:lottie_rawRes="@raw/lottie_heart"
+                app:lottie_loop="true" />
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Title and Details -->
+        <LinearLayout
+            android:id="@+id/productDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="start"
+            android:layout_below="@id/size_badges"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/productTitlePD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scarlett Whitening"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/productDescriptionPD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Brightly Serum"
+                android:textSize="14sp"
+                android:textColor="@color/textPrimary"
+                android:gravity="center"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/productDetailPD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_dummy_des"
+            android:textSize="14sp"
+            android:textColor="@color/textPrimary"
+            android:gravity="start"
+            android:layout_below="@+id/productDetails"
+            android:paddingHorizontal="16dp" />
+
+        <!-- Size Badges -->
+        <LinearLayout
+            android:id="@+id/size_badges"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingHorizontal="16dp"
+            android:layout_below="@+id/productImageCardView"
+            android:visibility="gone"
+            android:layout_marginTop="4dp">
+
+            <!-- Example Badge for 15 ml -->
+            <TextView
+                android:id="@+id/badge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@drawable/badges_background"
+                android:text="15 ml"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Example Badge for 25 ml -->
+            <TextView
+                android:id="@+id/badge_25ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@drawable/badges_background"
+                android:text="25 ml"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginEnd="8dp" />
+
+            <!-- Example Badge for 50 ml -->
+            <TextView
+                android:id="@+id/badge_50ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:background="@drawable/badges_background"
+                android:text="50 ml"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Counter and Total Amount -->
+        <LinearLayout
+            android:id="@+id/counter_total"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_below="@id/productDetailPD"
+            android:paddingHorizontal="16dp"
+            android:layout_marginTop="24dp">
+
+            <!-- Decrease Quantity Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDecreasePD"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-"
+                android:background="@drawable/counter_add_sub_background"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <!-- Quantity Display -->
+            <TextView
+                android:id="@+id/productQuantityTextView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="1"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:gravity="center" />
+
+            <!-- Increase Quantity Button -->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnIncreasePD"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:background="@drawable/counter_add_sub_background"
+                android:backgroundTint="@color/colorSecondary"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <!-- Total Amount -->
+            <TextView
+                android:id="@+id/productPricePD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="$10.3"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:gravity="end"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/addToCartBtnPD"
+                android:layout_width="match_parent"
+                android:layout_below="@id/counter_total"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add to Cart"
+                android:layout_gravity="bottom"
+                android:layout_margin="14dp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/white"
+           />
+
+
+
+    </RelativeLayout>
+</ScrollView>

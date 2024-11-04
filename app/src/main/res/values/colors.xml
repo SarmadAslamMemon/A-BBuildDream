@@ -1,7 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Primary Colors -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimaryDark">#B10E23</color>
-    <color name="colorPrimaryGray">#282F38</color>"
+    <color name="colorPrimary">#3F51B5</color> <!-- A deep blue for the primary color -->
+    <color name="colorPrimaryGray">#282F38</color>
+    <!-- Accent Colors -->
+    <color name="colorAccent">#FF4081</color> <!-- A vibrant pink for accent buttons, highlights -->
+    <color name="colorSecondary">#4CAF50</color> <!-- A green for secondary elements, like success messages -->
+
+    <!-- Background Colors -->
+    <color name="colorBackground">#F5F5F5</color> <!-- Light background for general app screens -->
+    <color name="colorCardBackground">#FFFFFF</color> <!-- White background for cards -->
+    <color name="colorCardShadow">#E0E0E0</color> <!-- Light gray shadow for card elements -->
+
+    <!-- Button Colors -->
+    <color name="buttonBackground">#FF5722</color> <!-- Vibrant orange for button background -->
+    <color name="buttonTextColor">#FFFFFF</color> <!-- White text color for buttons -->
+    <color name="buttonRipple">#FF7043</color> <!-- Button ripple effect color -->
+
+    <!-- Text Colors -->
+    <color name="textPrimary">#212121</color> <!-- Dark gray for primary text -->
+    <color name="textSecondary">#757575</color> <!-- Medium gray for secondary text -->
+    <color name="textHint">#9E9E9E</color> <!-- Lighter gray for input hints -->
+
+    <!-- Status Bar and Navigation Bar -->
+    <color name="statusBarColor">#3F51B5</color> <!-- Same as primary color for status bar -->
+    <color name="navigationBarColor">#FFFFFF</color> <!-- White for navigation bar -->
 </resources>

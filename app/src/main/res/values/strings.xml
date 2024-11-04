@@ -4,4 +4,8 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="a_project_of_a_amp_b_group_of_companies"><![CDATA[A PROJECT OF A&B GROUP OF COMPANIES]]></string>
+    <string name="product_dummy_des">Create a badge with a shape outline, you can orry my bad. I have edited the answer now. You have to end it in the las use a ShapeDrawable or a Shape XML resource file for the background.</string>
 </resources>

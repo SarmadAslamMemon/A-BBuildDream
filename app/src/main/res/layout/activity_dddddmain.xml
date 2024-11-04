@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Bell Icon positioned at the top right corner -->
+    <ImageView
+        android:id="@+id/bellIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/baseline_notifications_24"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp" />
+
+    <!-- AutoCompleteTextView positioned below the bell icon -->
+    <LinearLayout
+        android:id="@+id/searchbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/bellIcon"
+        android:layout_marginTop="4dp"
+        android:padding="8dp">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/black"
+            android:drawableEnd="@drawable/baseline_search_24"
+            android:background="@drawable/border"
+            android:drawableTint="#FB0000"
+            android:padding="8dp"
+            android:paddingStart="20dp"
+            android:hint="Search" />
+    </LinearLayout>
+
+
+            <!-- Responsive Horizontal Card Layout with Horizontal Scroll -->
+
+
+
+</RelativeLayout>

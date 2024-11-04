@@ -12,7 +12,9 @@ lifecycleLivedataKtx = "2.8.7"
 lifecycleViewmodelKtx = "2.8.7"
 navigationFragment = "2.8.3"
 navigationUi = "2.8.3"
-
+retrofit = "2.9.0"  # Add Retrofit version
+gson = "2.10.1"     # Add Gson version
+glide = "4.15.0"
 
 
 [libraries]
@@ -28,6 +30,10 @@ lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-lived
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }  # Add Retrofit library
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }  # Add Gson library
+retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }  # Add Glide library
 
 
 [plugins]
