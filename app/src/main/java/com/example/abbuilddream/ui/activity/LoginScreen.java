@@ -81,4 +81,8 @@ public class LoginScreen extends AppCompatActivity {
         signUpTextView = findViewById(R.id.signUpTextView);
     }
 
+    public void continueAsGuest(View view) {
+        startActivity(new Intent(LoginScreen.this, MainDashBoard.class));
+        finish();
+    }
 }

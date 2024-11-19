@@ -19,6 +19,7 @@
 
 
         <TextView
+            android:id="@+id/greetingTextMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Good Morning !"
@@ -48,7 +49,7 @@
         android:paddingHorizontal="6dp">
 
         <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView"
+            android:id="@+id/searchAutoCompleteTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

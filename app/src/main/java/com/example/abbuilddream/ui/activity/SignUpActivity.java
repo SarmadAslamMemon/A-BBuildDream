@@ -1,6 +1,6 @@
 package com.example.abbuilddream.ui.activity;
 
-import static com.example.abbuilddream.api.RetrofitClient.baseUrl;
+import static com.example.abbuilddream.network.RetrofitClient.baseUrl;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.abbuilddream.R;
-import com.example.abbuilddream.api.RetroInterface;
-import com.example.abbuilddream.api.RetrofitClient;
+import com.example.abbuilddream.network.RetroInterface;
+import com.example.abbuilddream.network.RetrofitClient;
 import com.example.abbuilddream.model.UserRegistered;
 import com.example.abbuilddream.model.UserRegistration;
 import com.example.abbuilddream.utility.GeneralMethods;
@@ -154,5 +154,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-
+    public void continueAsGuest(View view) {
+        startActivity(new Intent(SignUpActivity.this, MainDashBoard.class));
+        finish();
+    }
 }

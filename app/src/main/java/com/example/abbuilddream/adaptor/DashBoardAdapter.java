@@ -1,6 +1,6 @@
 package com.example.abbuilddream.adaptor;
 
-import static com.example.abbuilddream.api.RetrofitClient.baseUrl;
+import static com.example.abbuilddream.network.RetrofitClient.baseUrl;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,8 +21,9 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide; // For loading images
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.example.abbuilddream.R;
-import com.example.abbuilddream.api.RetroInterface;
-import com.example.abbuilddream.api.RetrofitClient;
+import com.example.abbuilddream.model.ProductOrder;
+import com.example.abbuilddream.network.RetroInterface;
+import com.example.abbuilddream.network.RetrofitClient;
 import com.example.abbuilddream.model.AddOrderResponse;
 import com.example.abbuilddream.model.CartItem;
 import com.example.abbuilddream.model.Order;
@@ -34,6 +35,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +44,7 @@ import retrofit2.Response;
 public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.DashBoardViewHolder> {
 
     private final Context context;
-    private final List<Product> productList;
+    private List<Product> productList;
     com.example.abbuilddream.utility.SessionManager sessionManager;
 
     // Constructor to initialize context and product list
@@ -59,6 +61,10 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
         return new DashBoardViewHolder(view);
     }
 
+    public void updateProductList(List<Product> newProductList) {
+        this.productList = newProductList;
+        notifyDataSetChanged(); // Notify adapter to refresh the data
+    }
     @Override
     public void onBindViewHolder(@NonNull DashBoardViewHolder holder, int position) {
         // Bind data to each item view
@@ -83,15 +89,12 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
         holder.cartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 showTickLottie(holder);
                 new Handler().postDelayed(() -> {
                     holder.tickAnimation.setVisibility(View.GONE);
                     holder.cartIcon.setVisibility(View.VISIBLE);
                 },1700);
-                Snackbar.make(v, "Product added to Cart", Snackbar.LENGTH_SHORT).show();
                 getProductDetails(product);
-                Log.w("jarvis", "onClick: " + product.getName());
             }
 
 
@@ -128,51 +131,51 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
 
 
     private void getProductDetails(Product product) {
+        sessionManager = new SessionManager(context);
+        // Fetch the current cart from session
+        List<ProductOrder> addedToCartProducts = sessionManager.getAddedToCartProducts();
+        List<Product> cartItems = sessionManager.getCartItems();
 
-        Order order = new Order();
-        List<CartItem> cartItems = new ArrayList<>();
-        cartItems.add(new CartItem((product.getId()), 1, product.getPrice()));
-        order.setCart(cartItems);
-        order.setFirstName("Test");
-        order.setLastName("Test");
-        order.setAddress("Test");
-        order.setCity("Test");
-        order.setMobileNumber("Test");
-        order.setPassword("Test");
-        makeOrder(order);
-        sessionManager=new SessionManager(context);
-        sessionManager.addCartItem(product);
+        if (addedToCartProducts == null) {
+            addedToCartProducts = new ArrayList<>();
+        }
 
+        // Flag to check if the product is already in the cart
+        boolean productExists = false;
 
+        // Iterate over the cart to find the product
+        for (ProductOrder productOrderItem : addedToCartProducts) {
+            if (productOrderItem.getProductId() == product.getId()) {
+                // If product exists, increment the count and update the price
+                productOrderItem.setCount(productOrderItem.getCount() + 1);
+                productOrderItem.setTotalPrice(productOrderItem.getTotalPrice() + product.getPrice());
+                productExists = true;
+                Log.d("ProductDetails", "Product exists in cart. Updated count: " + productOrderItem.getCount());
+                break;
+            }
+        }
+
+        // If the product is new, add it to the cart
+        if (!productExists) {
+            ProductOrder newProductOrder = new ProductOrder();
+            newProductOrder.setProductId(product.getId());
+            newProductOrder.setTotalPrice(product.getPrice());
+            newProductOrder.setCount(1);
+            addedToCartProducts.add(newProductOrder);
+            Log.d("ProductDetails", "New product added to cart. Product ID: " + product.getId());
+            cartItems.add(product);
+            sessionManager.saveCartItems(cartItems);
+        }
+
+        // Save the updated cart back to the session
+        sessionManager.saveCart(addedToCartProducts);
+        Log.d("ProductDetails", "Cart size after update: " + addedToCartProducts.size());
 
 
 
 
     }
 
-    private void makeOrder(Order order) {
-
-        RetroInterface apiService = RetrofitClient.getClient(baseUrl).create(RetroInterface.class);
-        Call<AddOrderResponse> createData = apiService.createData(order);
-        createData.enqueue(new Callback<AddOrderResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<AddOrderResponse> call, @NonNull Response<AddOrderResponse> response) {
-                if (response.isSuccessful()) {
-
-                    AddOrderResponse addOrderResponse = response.body();
-                    Log.w("jarvis", "onResponse: " + addOrderResponse.getResult().getMessage());
-
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<AddOrderResponse> call, @NonNull Throwable t) {
-
-                Log.w("jarvis", "onFailure: " + t.getMessage());
-            }
-        });
-
-    }
 
     @Override
     public int getItemCount() {
@@ -182,7 +185,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<DashBoardAdapter.Dash
     // ViewHolder class to hold references to each item's views
     public static class DashBoardViewHolder extends RecyclerView.ViewHolder {
 
-        TextView productCardNameTextView, productCardPriceTextView;
+        TextView productCardNameTextView, productCardPriceTextView ;
         ImageView productCardImageView, cartIcon;
         LottieAnimationView tickAnimation;
 

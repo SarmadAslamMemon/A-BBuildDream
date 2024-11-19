@@ -239,4 +239,20 @@
         android:text="Continue with Number"
         android:textColor="#020202" />
 
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/continueAsGuest"
+        android:layout_width="250sp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:padding="4dp"
+        android:backgroundTint="@color/colorPrimaryGray"
+        android:drawableEnd="@drawable/arrow_ic"
+        android:drawableTint="@color/white"
+        android:background="@drawable/button_background"
+        android:text="Continue As Guest"
+        android:onClick="continueAsGuest"
+        android:textColor="@color/white" />
+
 </LinearLayout>

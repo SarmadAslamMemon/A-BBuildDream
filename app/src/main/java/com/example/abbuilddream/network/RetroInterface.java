@@ -1,7 +1,8 @@
-package com.example.abbuilddream.api;
+package com.example.abbuilddream.network;
 
 import com.example.abbuilddream.model.AddOrderResponse;
 import com.example.abbuilddream.model.Order;
+import com.example.abbuilddream.model.Payment;
 import com.example.abbuilddream.model.Product;
 import com.example.abbuilddream.model.UserRegistered;
 import com.example.abbuilddream.model.UserRegistration;
@@ -37,6 +38,9 @@ public interface RetroInterface {
 
     @POST("api/User/Register")
     Call<UserRegistered> userRegister(@Body UserRegistration userRegistration);
+
+    @POST("api/Payment")
+    Call<Payment> payment(@Body Payment postData);
 //
 //    // 4. PUT request to update existing data
 //    @PUT("your_endpoint/{id}")

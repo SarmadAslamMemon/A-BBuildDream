@@ -1,4 +1,4 @@
-package com.example.abbuilddream.api;
+package com.example.abbuilddream.network;
 
 
 import com.google.gson.Gson;

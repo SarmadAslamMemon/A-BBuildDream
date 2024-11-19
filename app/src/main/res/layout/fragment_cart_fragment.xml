@@ -5,18 +5,22 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
     android:layout_height="match_parent">
 
 
 
     <TextView
         android:id="@+id/text_no_items"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:text="No item in Cart"
         android:textSize="24sp"
+        android:layout_marginTop="20dp"
         android:visibility="gone"
+
         android:textColor="#001D6E"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -55,18 +59,18 @@
             android:id="@+id/text_total_items"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total: (2 items)"
+            android:text="Total:"
             android:textSize="14sp"
             android:textColor="#FFFFFF"/>
 
         <TextView
-            android:id="@+id/text_total_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/totalPriceTextViewCH"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="$13.92"
-            android:textSize="24sp"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"/>
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <Button

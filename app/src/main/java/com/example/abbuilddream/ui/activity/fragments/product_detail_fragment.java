@@ -20,9 +20,12 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.abbuilddream.R;
 import com.example.abbuilddream.model.Product;
+import com.example.abbuilddream.model.ProductOrder;
 import com.example.abbuilddream.ui.activity.MainDashBoard;
 import com.example.abbuilddream.utility.GeneralMethods;
+import com.example.abbuilddream.utility.SessionManager;
 
+import java.util.List;
 import java.util.Objects;
 
 public class product_detail_fragment extends Fragment {
@@ -34,6 +37,7 @@ public class product_detail_fragment extends Fragment {
     TextView productPrice, productQuantityTextView;
     LottieAnimationView addToFavLottie,addedToCartLottie;
     Button addToCartBtn,btnIncrease,btnDecrease;
+    SessionManager sessionManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -100,25 +104,37 @@ public class product_detail_fragment extends Fragment {
     }
 
     private void showAddedToCartLottie(View v) {
-                LayoutInflater inflater = LayoutInflater.from(v.getContext());
-                View dialogView = inflater.inflate(R.layout.added_to_cart_animation_layout, null);
 
-                // Create the AlertDialog with the custom layout
+        LayoutInflater inflater = LayoutInflater.from(v.getContext());
+                View dialogView = inflater.inflate(R.layout.added_to_cart_animation_layout, null);
                 AlertDialog dialog = new AlertDialog.Builder(v.getContext())
                         .setView(dialogView)
                         .setCancelable(false)
                         .create();
-        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-
-        // Show the dialog
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
+
                 addedToCartLottie=dialogView.findViewById(R.id.addedToCartLottie);
                 addedToCartLottie.setVisibility(View.VISIBLE);
                 addedToCartLottie.playAnimation();
 
                 // Dismiss the dialog after 2 seconds
                 new Handler().postDelayed(dialog::dismiss, 2000);
+
+                sessionManager= new SessionManager(v.getContext());
+                List<Product> cartItems = sessionManager.getCartItems();
+                List<ProductOrder> addedToCartProducts = sessionManager.getAddedToCartProducts();
+
+            ProductOrder newProductOrder = new ProductOrder();
+            newProductOrder.setProductId(product.getId());
+            newProductOrder.setTotalPrice(product.getPrice());
+            newProductOrder.setCount(1);
+            addedToCartProducts.add(newProductOrder);
+            Log.d("ProductDetails", "New product added to cart. Product ID: " + product.getId());
+            cartItems.add(product);
+            sessionManager.saveCartItems(cartItems);
+
+
             }
 
 
@@ -142,6 +158,7 @@ public class product_detail_fragment extends Fragment {
         Glide.with(requireContext()).load(product.getImage()).into(productImage);
         productPrice.setText("Rs. " + product.getPrice());
         productTitle.setText(product.getName());
+        productDescription.setText(product.getDescription());
 
     }
 

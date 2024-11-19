@@ -1,9 +1,11 @@
 package com.example.abbuilddream.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class Order {
-    private List<CartItem> cart;
+    private List<ProductOrder> cart;
     private String firstName;
     private String lastName;
     private String address;
@@ -13,11 +15,11 @@ public class Order {
     private String email;
 
     // Getters and Setters
-    public List<CartItem> getCart() {
+    public List<ProductOrder> getCart() {
         return cart;
     }
 
-    public void setCart(List<CartItem> cart) {
+    public void setCart(List<ProductOrder> cart) {
         this.cart = cart;
     }
 
@@ -75,5 +77,21 @@ public class Order {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Order{" +
+                "cart=" + cart.toString() +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

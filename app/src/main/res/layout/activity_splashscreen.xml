@@ -9,7 +9,7 @@
     <!-- Rounded rectangle container -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="700dp"
+        android:layout_height="650dp"
         android:layout_marginTop="-20dp"
         android:background="@drawable/rounded_rectangle_background"
         android:orientation="vertical"
@@ -32,10 +32,10 @@
         android:id="@+id/projectLineTxt"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom|center"
+        android:gravity="center"
         android:text="@string/a_project_of_a_amp_b_group_of_companies"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textAllCaps="true"
         android:fontFamily="@font/mediumperimary"
         android:layout_marginBottom="30dp"

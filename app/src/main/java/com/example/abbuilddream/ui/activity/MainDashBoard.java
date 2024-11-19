@@ -1,11 +1,13 @@
 package com.example.abbuilddream.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -29,17 +31,13 @@ public class MainDashBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
-
-
+        GeneralMethods.showNoInternetDialog(this);
 
         initializeViews();
         setInitialFragment();
         setupBottomNavListener();
     }
+
 
     private void initializeViews() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -55,8 +53,9 @@ public class MainDashBoard extends AppCompatActivity {
 
             if (item.getItemId() == R.id.home) {
                 selectedFragment = new dashboard_fragment();
-            } else if (item.getItemId() == R.id.catagory) {
-                selectedFragment = new setting_fragment(); // Adjust if this represents the category section
+            } else if (item.getItemId() == R.id.checkout) {
+                startActivity(new Intent(MainDashBoard.this, CheckOutActivity.class));
+                finish();
             } else if (item.getItemId() == R.id.cart) {
                 selectedFragment = new cart_fragment();
             } else if (item.getItemId() == R.id.profile) {
@@ -86,18 +85,29 @@ public class MainDashBoard extends AppCompatActivity {
 
         transaction.replace(R.id.homeFrameLayout, fragment);
         transaction.commit();
+ 
     }
 
     @Override
     public void onBackPressed() {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.homeFrameLayout);
         if (currentFragment instanceof dashboard_fragment) {
-            super.onBackPressed();
+            showQuitAlertDialogueBox();
         } else if (currentFragment instanceof product_detail_fragment) {
             bottomNavigationView.setVisibility(View.VISIBLE);
             loadFragment(new dashboard_fragment());
         } else {
             loadFragment(new dashboard_fragment());
         }
+    }
+
+    private void showQuitAlertDialogueBox() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle("Quit App")
+                .setMessage("Are you sure you want to quit the app?")
+                .setPositiveButton("Yes", (dialog, which) -> finishAffinity())
+                .setNegativeButton("No", null)
+                .create();
+        alertDialog.show();
     }
 }

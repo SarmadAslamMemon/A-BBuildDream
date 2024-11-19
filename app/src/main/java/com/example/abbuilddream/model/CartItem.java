@@ -38,4 +38,13 @@ package com.example.abbuilddream.model;
         public void setTotalPrice(double totalPrice) {
             this.totalPrice = totalPrice;
         }
+
+        @Override
+        public String toString() {
+            return "CartItem{" +
+                    "productDetailId=" + productDetailId +
+                    ", count=" + count +
+                    ", totalPrice=" + totalPrice +
+                    '}';
+        }
     }
